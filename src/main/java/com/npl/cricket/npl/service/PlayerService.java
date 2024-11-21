@@ -20,6 +20,8 @@ public interface PlayerService {
 	public List<PlayerDTO> getAllPlayerTeam();
 	
 	List<PlayerDTO> findAllMarqueePlayer();
+	
+	List<PlayerDTO> findAllForeignPlayer();
 
 
 }

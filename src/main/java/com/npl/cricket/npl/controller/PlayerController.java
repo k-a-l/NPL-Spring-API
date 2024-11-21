@@ -75,5 +75,10 @@ public class PlayerController {
 	public List<PlayerDTO> getMarqueePlayer() {
 		return playerService.findAllMarqueePlayer();
 	}
+	
+	@GetMapping(path = "/players/foreign")
+	public List<PlayerDTO> getForeignPlayer() {
+		return playerService.findAllForeignPlayer();
+	}
 
 }

@@ -11,6 +11,7 @@ import com.npl.cricket.npl.entity.Player;
 public interface PlayerJpaRepository extends JpaRepository<Player, Long> {
 	
 	List<Player> findByMarqueeTrue();
+	List<Player> findByForeignPlayerTrue();
 	
 	
 

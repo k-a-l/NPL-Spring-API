@@ -2,7 +2,6 @@ package com.npl.cricket.npl.service.implementation;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -105,7 +104,17 @@ public class PlayerServiceImplementation implements PlayerService {
 
 	@Override
 	public List<PlayerDTO> findAllMarqueePlayer() {
-		return playerJpaRepository.findByMarqueeTrue().stream().map(this::convertEntityToDto)
+		return playerJpaRepository.findByMarqueeTrue()
+				.stream()
+				.map(this::convertEntityToDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<PlayerDTO> findAllForeignPlayer() {
+		return playerJpaRepository.findByForeignPlayerTrue()
+				.stream()
+				.map(this::convertEntityToDto)
 				.collect(Collectors.toList());
 	}
 
