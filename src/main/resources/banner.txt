@@ -1,0 +1,14 @@
+ _   _ ____  _     
+| \ | |  _ \| |    
+|  \| | |_) | |    
+| . ` |  _ /| |___ 
+|_|\_ |_|   |_____|
+ 
+  ==================================
+      Nepal Premier League (NPL) 🚩
+  ==================================
+    Play hard, play fair, and shine! 🌟
+
+  Application: ${spring.application.name}
+  Version: ${spring.boot.version}
+  Environment: ${spring.profiles.active:default}
