@@ -3,8 +3,11 @@ package com.npl.cricket.npl.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import com.npl.cricket.npl.dto.PlayerDTO;
 import com.npl.cricket.npl.entity.Player;
+import com.npl.cricket.npl.search.PlayerSearchCriteriaDTO;
 
 public interface PlayerService {
 	List<Player> getAllPlayers();
@@ -22,6 +25,7 @@ public interface PlayerService {
 	List<PlayerDTO> findAllMarqueePlayer();
 	
 	List<PlayerDTO> findAllForeignPlayer();
-
+	
+	List<PlayerSearchCriteriaDTO> searchPlayer (PlayerSearchCriteriaDTO criteria);
 
 }

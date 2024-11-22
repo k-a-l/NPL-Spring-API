@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.npl.cricket.npl.dto.PlayerDTO;
 import com.npl.cricket.npl.entity.Player;
+import com.npl.cricket.npl.search.PlayerSearchCriteriaDTO;
 import com.npl.cricket.npl.service.PlayerService;
 
 @RestController
@@ -79,6 +80,12 @@ public class PlayerController {
 	@GetMapping(path = "/players/foreign")
 	public List<PlayerDTO> getForeignPlayer() {
 		return playerService.findAllForeignPlayer();
+	}
+	
+	@PostMapping("/players/search")
+	public ResponseEntity<List<PlayerSearchCriteriaDTO>> searchPlayer(@RequestBody PlayerSearchCriteriaDTO criteria){
+		List<PlayerSearchCriteriaDTO> searchPlayer = playerService.searchPlayer(criteria);
+		return ResponseEntity.ok(searchPlayer);
 	}
 
 }

@@ -1,15 +1,22 @@
 package com.npl.cricket.npl.service.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.npl.cricket.npl.dto.PlayerDTO;
 import com.npl.cricket.npl.entity.Player;
 import com.npl.cricket.npl.repository.PlayerJpaRepository;
+import com.npl.cricket.npl.search.PlayerSearchCriteriaDTO;
+import com.npl.cricket.npl.search.PlayerSpecification;
 import com.npl.cricket.npl.service.PlayerService;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Predicate;
 
 @Service
 public class PlayerServiceImplementation implements PlayerService {
@@ -117,5 +124,26 @@ public class PlayerServiceImplementation implements PlayerService {
 				.map(this::convertEntityToDto)
 				.collect(Collectors.toList());
 	}
+	
+	private PlayerSearchCriteriaDTO convertSearchDto(Player player) {
+		PlayerSearchCriteriaDTO playerSearchDto=new PlayerSearchCriteriaDTO();
+		playerSearchDto.setName(player.getName());
+		playerSearchDto.setRole(player.getRole());
+		playerSearchDto.setTeamName(player.getTeam().getName());
+		return playerSearchDto;
+		
+		
+	}
+
+	@Override
+	public List<PlayerSearchCriteriaDTO> searchPlayer(PlayerSearchCriteriaDTO criteria) {
+	    return playerJpaRepository.findAll(PlayerSpecification.searchPlayers(criteria))
+	                              .stream()
+	                              .map(this::convertSearchDto)
+	                              .collect(Collectors.toList());
+	}
+
+
+	
 
 }
